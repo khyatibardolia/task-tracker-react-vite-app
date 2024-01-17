@@ -8,7 +8,8 @@ type Props = {
     variant?: string,
     size?: string,
     sx?: object,
-    startIcon?: ReactElement
+    startIcon?: ReactElement,
+    onClick: () => void
 
 }
 
@@ -22,7 +23,7 @@ const CustomButton = styled(Button)(({ theme }) => ({
     }
 }));
 
-export const CommonButton: FC = ({children, color, disabled, variant, size, sx, startIcon}: Props) => {
+export const CommonButton: FC = ({children, color, disabled, variant, size, sx, startIcon, onClick}: Props) => {
     return <CustomButton
         color={color}
         variant={variant}
@@ -30,6 +31,7 @@ export const CommonButton: FC = ({children, color, disabled, variant, size, sx, 
         size={size}
         sx={sx}
         startIcon={startIcon}
+        onClick={onClick}
     >
         {children}
     </CustomButton>

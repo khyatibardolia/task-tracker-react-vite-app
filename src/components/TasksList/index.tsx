@@ -1,16 +1,8 @@
-import {FC} from "react";
+import {FC, useContext, useEffect} from "react";
 import {Box, styled, Typography} from "@mui/material";
 import EmptyTasksIcon from "../SvgIcon/EmptyTasksIcon";
 import {TaskCard} from "../TaskCard";
-
-type Props = {
-    tasks: {
-        title: string,
-        createdDateAndTime: string,
-        status: string,
-        description: string,
-    }
-}
+import {TaskContext} from "../../context/TaskContext";
 
 const EmptyText = styled(Typography)(({theme}) => ({
     fontSize: '14px',
@@ -19,7 +11,16 @@ const EmptyText = styled(Typography)(({theme}) => ({
     color: `${theme.palette.grey[600]}`
 }));
 
-export const TasksList: FC = ({tasks}: Props) => {
+export const TasksList: FC = () => {
+    const { tasks, setTasks } = useContext(TaskContext);
+
+    useEffect(() => {
+        // Retrieve tasks from local storage
+        const storedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        setTasks(storedTasks);
+    }, []);
+
+    console.log('tasks', tasks);
     return <Box
         sx={{
             marginTop: '48px',

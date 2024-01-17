@@ -6,6 +6,7 @@ import EventOutlinedIcon from '@mui/icons-material/EventOutlined';
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import {CustomMenuItem} from "../Common/CommonMenuItem";
+import TaskStatus from "../TaskStatus";
 
 type Props = {
     title: string,
@@ -60,6 +61,7 @@ export const TaskCard: FC = ({task}: Props) => {
                     Created: {task.createdDateAndTime}</Typography>
             </Box>
             <Box>
+                <TaskStatus status={task.status}/>
                 <IconButton
                     aria-controls="dotted-menu"
                     aria-haspopup="true"
@@ -109,7 +111,8 @@ export const TaskCard: FC = ({task}: Props) => {
                             color: 'grey.600',
                             fontSize: '14px',
                             paddingTop: '8px'
-                        }}>{task.description}
+                        }}>
+                {task.description}
             </Typography>
         </Box>
     </Box>
