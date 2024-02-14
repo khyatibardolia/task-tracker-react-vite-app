@@ -1,13 +1,10 @@
-import Chip from '@mui/material/Chip'
-import { FC } from 'react'
-import { statusMapping } from '../../utils/taskStatusMapping'
+import Chip from '@mui/material/Chip';
+import { FC } from "react";
+import { statusMapping } from "../../utils/taskStatusMapping";
 
 export const TaskStatus: FC = ({ status }) => {
-    const statusInfo = statusMapping[status] || {
-        color: 'grey.900',
-        bgColor: 'grey.200',
-    }
-    const { color, bgColor } = statusInfo
+    const statusInfo = statusMapping[status] || { color: 'grey.900', bgColor: 'grey.200' };
+    const { color, bgColor } = statusInfo;
 
     return (
         <Chip
@@ -16,10 +13,10 @@ export const TaskStatus: FC = ({ status }) => {
                 backgroundColor: bgColor,
                 color,
                 padding: '0 10px',
-                fontSize: '12px',
+                fontSize: '12px'
             }}
         />
-    )
-}
+    );
+};
 
-export default TaskStatus
+export default TaskStatus;
