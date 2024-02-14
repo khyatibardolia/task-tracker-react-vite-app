@@ -19,7 +19,7 @@ export const TaskHistory: FC<Props> = ({ open, onClose, taskId }: Props) => {
             <b>Task History</b>
         </Typography>
 
-        {historyData && historyData.length ? historyData.map((taskHistory, index) => <Box>
+        {historyData && historyData.length ? historyData.map((taskHistory, index) => <Box key={index}>
             <Box sx={{padding: '16px 0 24px 0'}}>
                 <Typography variant="body1" id="modal-title" sx={{fontSize: '16px', fontWeight: 600}}>
                     {taskHistory.statusChangeText}
@@ -32,10 +32,10 @@ export const TaskHistory: FC<Props> = ({ open, onClose, taskId }: Props) => {
                     alignItems: 'center',
                 }}>
                     <AccessTimeIcon sx={{fontSize: 16, marginRight: '4px'}}/>
-                    Created: {taskHistory.updatedDateAndTime}</Typography>
+                    {taskHistory.updatedDateAndTime}</Typography>
             </Box>
-            <Divider />
-        </Box>): <>No history tracked</>}
+            <Divider/>
+        </Box>) : <>No history tracked</>}
 
     </CustomModal>
 }

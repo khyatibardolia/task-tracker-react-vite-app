@@ -9,6 +9,7 @@ import {CustomMenuItem} from "../Common/CommonMenuItem";
 import TaskStatus from "../TaskStatus";
 import {useNavigate} from "react-router-dom";
 import {TaskHistory} from "../TaskHistory";
+import {DeleteTask} from "../DeleteTask";
 
 type Props = {
     title: string,
@@ -41,32 +42,26 @@ export const TaskCard: FC = ({task}: Props) => {
     const navigate = useNavigate();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [isTaskHistoryModalOpen, setIsTaskHistoryModalOpen] = useState(false);
+    const [isTaskDeleteModalOpen, setIsTaskDeleteModalOpen] = useState(false);
+
     const open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
     const handleClose = (label) => {
         switch (label) {
-            case 'Task History':
+            case 0:
                 setIsTaskHistoryModalOpen(true)
                 break;
-            case 'Edit Task':
-                handleEditTask();
+            case 1:
+                navigate(`/edit/${task.id}`);
                 break;
-            case 'Delete Task':
-                handleDeleteTask();
+            case 2:
+                setIsTaskDeleteModalOpen(true)
                 break;
         }
         setAnchorEl(null);
     };
-
-    const handleEditTask = () => {
-        navigate(`/edit/${task.id}`);
-    };
-
-    const handleDeleteTask = () => {
-        //Todo: handle delete task logic
-    }
 
     return <Box sx={{display: 'flex', flexDirection: 'column'}}>
         <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
@@ -118,7 +113,7 @@ export const TaskCard: FC = ({task}: Props) => {
                     {menuItems.map((item, index) => (
                         <CustomMenuItem
                             key={index}
-                            onClose={() => handleClose(item.label)}
+                            onClose={() => handleClose(index)}
                             label={item.label}
                             icon={item.icon}
                             color={item.color}
@@ -139,5 +134,8 @@ export const TaskCard: FC = ({task}: Props) => {
         </Box>
         {isTaskHistoryModalOpen && <TaskHistory taskId={task.id} open={isTaskHistoryModalOpen}
                                                 onClose={() => setIsTaskHistoryModalOpen(false)}/>}
+
+        {isTaskDeleteModalOpen && <DeleteTask taskId={task.id} open={isTaskDeleteModalOpen}
+                                              onClose={() => setIsTaskDeleteModalOpen(false)}/>}
     </Box>
 }

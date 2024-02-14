@@ -128,7 +128,7 @@ export const AddEditTaskForm: FC<Props> = ({isEdit = false, existingTask}: Props
             }
 
             const taskId = existingTask.id;
-            saveTaskHistory(taskId, [historyLog]);
+            saveTaskHistory(taskId, historyLog);
         }
     }
 
@@ -189,7 +189,7 @@ export const AddEditTaskForm: FC<Props> = ({isEdit = false, existingTask}: Props
                                       sx={{
                                           width: '97px',
                                           margin: '24px 0 0 auto !important',
-                                          padding: '10px 20px'
+                                          padding: '10px 20px',
                                       }}
                                       onClick={handleAddTask}
             >

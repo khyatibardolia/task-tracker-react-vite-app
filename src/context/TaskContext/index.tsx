@@ -22,9 +22,23 @@ export const TaskProvider: FC = ({ children }) => {
         setTasks([...newTask]);
     };
 
+    const deleteTask = (taskId: string) => {
+        const updatedTasks = tasks.filter((task) => task.id !== taskId);
+        setTasks(updatedTasks);
+        localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+
+        const updatedTaskHistory = { ...taskHistory };
+        delete updatedTaskHistory[taskId];
+        setTaskHistory(updatedTaskHistory);
+        localStorage.setItem('taskHistory', JSON.stringify(updatedTaskHistory));
+    };
+
     const saveTaskHistory = (taskId, newHistory) => {
-        setTaskHistory({ ...taskHistory, [taskId]: newHistory });
-        localStorage.setItem('taskHistory', JSON.stringify({ ...taskHistory, [taskId]: newHistory }));
+        setTaskHistory({ ...taskHistory, [taskId]: [...(taskHistory[taskId] || []), newHistory] });
+        localStorage.setItem('taskHistory', JSON.stringify({
+            ...taskHistory,
+            [taskId]: [...(taskHistory[taskId] || []), newHistory],
+        }));
     };
 
     const contextValue = {
@@ -33,6 +47,7 @@ export const TaskProvider: FC = ({ children }) => {
         addEditTask,
         taskHistory,
         saveTaskHistory,
+        deleteTask,
     };
 
     return (
