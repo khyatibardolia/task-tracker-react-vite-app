@@ -12,15 +12,8 @@ const EmptyText = styled(Typography)(({theme}) => ({
 }));
 
 export const TasksList: FC = () => {
-    const { tasks, setTasks } = useContext(TaskContext);
+    const { tasks } = useContext(TaskContext);
 
-    useEffect(() => {
-        // Retrieve tasks from local storage
-        const storedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
-        setTasks(storedTasks);
-    }, []);
-
-    console.log('tasks', tasks);
     return <Box
         sx={{
             marginTop: '48px',

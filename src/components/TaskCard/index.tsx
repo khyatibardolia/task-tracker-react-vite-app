@@ -1,5 +1,5 @@
 import React, {FC, useState} from "react";
-import {Box, IconButton, Menu, MenuItem, Typography} from "@mui/material";
+import {Box, IconButton, Menu, Typography} from "@mui/material";
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import EventOutlinedIcon from '@mui/icons-material/EventOutlined';
@@ -7,6 +7,7 @@ import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutl
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import {CustomMenuItem} from "../Common/CommonMenuItem";
 import TaskStatus from "../TaskStatus";
+import {useNavigate} from "react-router-dom";
 
 type Props = {
     title: string,
@@ -36,15 +37,38 @@ const menuItems = [
 ];
 
 export const TaskCard: FC = ({task}: Props) => {
+    const navigate = useNavigate();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
-    const handleClose = () => {
+    const handleClose = (label) => {
+        switch(label) {
+            case 'Task History':
+                handleTaskHistory();
+                break;
+            case 'Edit Task':
+                handleEditTask();
+                break;
+            case 'Delete Task':
+                handleDeleteTask();
+                break;
+        }
         setAnchorEl(null);
     };
 
+    const handleTaskHistory = () => {
+        //Todo: handle task history logic
+    }
+
+    const handleEditTask = () => {
+        navigate(`/edit/${task.id}`);
+    };
+
+    const handleDeleteTask = () => {
+        //Todo: handle delete task logic
+    }
 
     return <Box sx={{display: 'flex', flexDirection: 'column'}}>
         <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
@@ -96,7 +120,7 @@ export const TaskCard: FC = ({task}: Props) => {
                     {menuItems.map((item, index) => (
                         <CustomMenuItem
                             key={index}
-                            onClose={handleClose}
+                            onClose={() => handleClose(item.label)}
                             label={item.label}
                             icon={item.icon}
                             color={item.color}

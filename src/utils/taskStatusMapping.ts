@@ -1,5 +1,5 @@
 export const statusMapping = {
-    ToDo: {
+    Todo: {
         bgColor: 'rgba(51, 204, 170, 0.20)',
         color: '#008060',
         validTransitions: ['InProgress'],
@@ -11,22 +11,22 @@ export const statusMapping = {
     },
     InQA: {
         bgColor: 'warning.light',
-        color: 'warning.dark',
+        color: 'primary.contrastText',
         validTransitions: ['Done', 'ToDo'],
     },
     Blocked: {
         bgColor: 'error.light',
-        color: 'error.dark',
-        validTransitions: ['ToDo'],
+        color: 'primary.contrastText',
+        validTransitions: ['Todo'],
     },
     Done: {
         bgColor: 'success.light',
-        color: 'success.dark',
+        color: 'primary.contrastText',
         validTransitions: ['Deployed'],
     },
     Deployed: {
         bgColor: 'secondary.light',
-        color: 'secondary.dark',
+        color: 'primary.contrastText',
         validTransitions: [],
     },
 };

@@ -1,14 +1,13 @@
+import {FC} from "react";
 import {BreadCrumbs} from "../../components/BreadCrumbs";
-import {AddTaskForm} from "../../components/AddTaskForm";
-import {TasksList} from "../../components/TasksList";
+import {EditTask} from "../../components/EditTask";
 import {TaskProvider} from "../../context/TaskContext";
 
-export const Home = () => {
+export const EditTaskPage: FC = () => {
     return <>
         <BreadCrumbs/>
         <TaskProvider>
-            <AddTaskForm/>
-            <TasksList/>
+            <EditTask/>
         </TaskProvider>
     </>
 }

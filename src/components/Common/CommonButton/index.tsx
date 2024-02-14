@@ -9,21 +9,23 @@ type Props = {
     size?: string,
     sx?: object,
     startIcon?: ReactElement,
-    onClick: () => void
+    onClick: () => void,
+    bgColor?: string,
+    textColor?: string,
 
 }
 
-const CustomButton = styled(Button)(({ theme }) => ({
-    backgroundColor: theme.palette.primary.dark,
-    color: theme.palette.primary.contrastText,
-    borderRadius: '32px',
-    '&:hover': {
-        backgroundColor: theme.palette.primary.dark,
-        color: theme.palette.primary.contrastText,
-    }
-}));
+export const CommonButton: FC = ({children, color, disabled, variant, size, sx, startIcon, onClick, bgColor, textColor}: Props) => {
+    const CustomButton = styled(Button)(({ theme }) => ({
+        backgroundColor: !bgColor ? theme.palette.primary.dark : theme.palette[bgColor],
+        color: !textColor ? theme.palette.primary.contrastText : theme.palette[textColor],
+        borderRadius: '32px',
+        '&:hover': {
+            backgroundColor: !bgColor ? theme.palette.primary.dark : theme.palette[bgColor],
+            color: !textColor ? theme.palette.primary.contrastText : theme.palette[textColor],
+        }
+    }));
 
-export const CommonButton: FC = ({children, color, disabled, variant, size, sx, startIcon, onClick}: Props) => {
     return <CustomButton
         color={color}
         variant={variant}

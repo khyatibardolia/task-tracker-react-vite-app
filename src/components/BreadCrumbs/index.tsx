@@ -1,18 +1,17 @@
 import {FC} from "react";
 import {Box, Breadcrumbs, Typography} from "@mui/material";
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import {useLocation} from "react-router-dom";
 
-type Props = {
-    page: string;
-}
+export const BreadCrumbs: FC = () => {
+    const location = useLocation();
 
-export const BreadCrumbs: FC = ({page = 'Home'}: Props) => {
     const breadcrumbs = [
         <Typography key="1" color="text.primary">
             Task Management
         </Typography>,
         <Typography key="2" color="inherit">
-            {page}
+            {location.pathname?.includes('/edit') ? 'Edit' : 'Home'}
         </Typography>,
     ];
 
