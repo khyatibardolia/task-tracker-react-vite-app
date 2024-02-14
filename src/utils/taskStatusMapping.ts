@@ -12,7 +12,7 @@ export const statusMapping = {
     InQA: {
         bgColor: 'warning.light',
         color: 'primary.contrastText',
-        validTransitions: ['Done', 'ToDo'],
+        validTransitions: ['Done', 'Todo'],
     },
     Blocked: {
         bgColor: 'error.light',

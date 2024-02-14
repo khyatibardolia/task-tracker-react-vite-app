@@ -8,6 +8,7 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import {CustomMenuItem} from "../Common/CommonMenuItem";
 import TaskStatus from "../TaskStatus";
 import {useNavigate} from "react-router-dom";
+import {TaskHistory} from "../TaskHistory";
 
 type Props = {
     title: string,
@@ -39,14 +40,15 @@ const menuItems = [
 export const TaskCard: FC = ({task}: Props) => {
     const navigate = useNavigate();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+    const [isTaskHistoryModalOpen, setIsTaskHistoryModalOpen] = useState(false);
     const open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
     const handleClose = (label) => {
-        switch(label) {
+        switch (label) {
             case 'Task History':
-                handleTaskHistory();
+                setIsTaskHistoryModalOpen(true)
                 break;
             case 'Edit Task':
                 handleEditTask();
@@ -57,10 +59,6 @@ export const TaskCard: FC = ({task}: Props) => {
         }
         setAnchorEl(null);
     };
-
-    const handleTaskHistory = () => {
-        //Todo: handle task history logic
-    }
 
     const handleEditTask = () => {
         navigate(`/edit/${task.id}`);
@@ -139,5 +137,7 @@ export const TaskCard: FC = ({task}: Props) => {
                 {task.description}
             </Typography>
         </Box>
+        {isTaskHistoryModalOpen && <TaskHistory taskId={task.id} open={isTaskHistoryModalOpen}
+                                                onClose={() => setIsTaskHistoryModalOpen(false)}/>}
     </Box>
 }

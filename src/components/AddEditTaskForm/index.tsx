@@ -36,7 +36,7 @@ type Props = {
 };
 
 export const AddEditTaskForm: FC<Props> = ({isEdit = false, existingTask}: Props) => {
-    const {addEditTask, tasks} = useContext(TaskContext);
+    const {addEditTask, tasks, saveTaskHistory} = useContext(TaskContext);
     const [title, setTitle] = useState<string>('');
     const [description, setDescription] = useState<string>('');
     const [selectedStatus, setSelectedStatus] = useState<string>('');
@@ -113,7 +113,22 @@ export const AddEditTaskForm: FC<Props> = ({isEdit = false, existingTask}: Props
             localStorage.setItem('tasks', JSON.stringify(updatedTasks));
 
             addEditTask(updatedTasks);
+            getTaskHistoryLog(existingTask, updatedTask);
             navigate('/');
+        }
+    }
+
+    const getTaskHistoryLog = (existingTask, updatedTask) => {
+        // Updating history only if status changes
+        if (existingTask.status !== updatedTask.status) {
+            const historyLog = {
+                id: updatedTask.id,
+                statusChangeText: `The task was marked as "${updatedTask.status}"`,
+                updatedDateAndTime: `${format(new Date(), "MMM d, yyyy - h:mm a")}`
+            }
+
+            const taskId = existingTask.id;
+            saveTaskHistory(taskId, [historyLog]);
         }
     }
 
