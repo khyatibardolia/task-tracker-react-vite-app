@@ -43,10 +43,10 @@ export const AddEditTaskForm: FC<Props> = ({isEdit = false, existingTask}: Props
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (isEdit && Object.keys(existingTask).length) {
-            setTitle(existingTask.title);
-            setDescription(existingTask.description);
-            setSelectedStatus(existingTask.status);
+        if (isEdit && existingTask && Object.keys(existingTask)?.length) {
+            setTitle(existingTask?.title || '');
+            setDescription(existingTask?.description || '');
+            setSelectedStatus(existingTask?.status || '');
         }
     }, [isEdit, existingTask]);
 
@@ -86,7 +86,9 @@ export const AddEditTaskForm: FC<Props> = ({isEdit = false, existingTask}: Props
             createdDateAndTime: format(new Date(), "MMM d, yyyy - h:mm a"),
         };
 
-        const existingTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        const storedTasks = localStorage.getItem('tasks');
+        const existingTasks = storedTasks ? JSON.parse(storedTasks) : [];
+
         existingTasks.push(newTask);
 
         localStorage.setItem('tasks', JSON.stringify(existingTasks));
@@ -99,7 +101,7 @@ export const AddEditTaskForm: FC<Props> = ({isEdit = false, existingTask}: Props
     }
 
     const saveChanges = () => {
-        if (Object.keys(existingTask).length) {
+        if (existingTask && Object.keys(existingTask).length) {
             const updatedTask = {
                 ...existingTask,
                 title,
@@ -107,7 +109,7 @@ export const AddEditTaskForm: FC<Props> = ({isEdit = false, existingTask}: Props
                 status: selectedStatus,
             };
 
-            const updatedTasks = tasks.map((task) =>
+            const updatedTasks: TasksData[] = tasks.map((task) =>
                 task.id === existingTask.id ? updatedTask : task
             );
             localStorage.setItem('tasks', JSON.stringify(updatedTasks));
@@ -118,7 +120,7 @@ export const AddEditTaskForm: FC<Props> = ({isEdit = false, existingTask}: Props
         }
     }
 
-    const getTaskHistoryLog = (existingTask, updatedTask) => {
+    const getTaskHistoryLog = (existingTask: TasksData, updatedTask: TasksData) => {
         // Updating history only if status changes
         if (existingTask.status !== updatedTask.status) {
             const historyLog = {
@@ -161,13 +163,13 @@ export const AddEditTaskForm: FC<Props> = ({isEdit = false, existingTask}: Props
                                 color: 'text.disabled',
                                 marginRight: '8px'
                             }}
-                            fontSize='16'/>
+                            fontSize='small'/>
                         <b>Add a new Task</b>
                     </>
                     :
                     <>
                         <EditOutlinedIcon sx={{color: 'text.disabled', marginRight: '8px'}}
-                                          fontSize='16'/>
+                                          fontSize='small'/>
                         <b>Edit Task</b>
                     </>
                 }
@@ -192,9 +194,8 @@ export const AddEditTaskForm: FC<Props> = ({isEdit = false, existingTask}: Props
                                           padding: '10px 20px',
                                       }}
                                       onClick={handleAddTask}
-            >
-                Add
-            </CommonButton>}
+                                      label="Add"
+            />}
             {isEdit && Object.keys(existingTask).length &&
                 <CommonDropdown buttonText={existingTask?.status}
                                 options={statusMapping[existingTask?.status]?.validTransitions}
@@ -202,13 +203,12 @@ export const AddEditTaskForm: FC<Props> = ({isEdit = false, existingTask}: Props
                 />}
 
             {isEdit && <Stack spacing={2} direction="row">
-                <CommonButton variant="outlined" startIcon={<CheckIcon/>} sx={{width: '50%'}} onClick={saveChanges}>
-                    Save Changes</CommonButton>
+                <CommonButton variant="outlined" startIcon={<CheckIcon/>} sx={{width: '50%'}} onClick={saveChanges} label="Save Changes"/>
                 <CommonButton variant="outlined" bgColor='background.paper' textColor='primary.dark'
                               onClick={cancelChanges}
-                              sx={{width: '50%'}}>
-                    Cancel
-                </CommonButton>
+                              sx={{width: '50%'}}
+                              label="Cancel"
+                />
             </Stack>}
         </Stack>
     </Box>

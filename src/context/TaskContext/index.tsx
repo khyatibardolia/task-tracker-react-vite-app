@@ -1,7 +1,7 @@
 import {createContext, FC, useEffect, useState} from 'react';
-import {TasksData} from "../../types/types";
+import {TaskContextType, TaskHistory, TasksData} from "../../types/types";
 
-export const TaskContext = createContext();
+export const TaskContext = createContext<TaskContextType>({} as TaskContextType);
 
 export const TaskProvider: FC = ({ children }) => {
     const [tasks, setTasks] = useState([]);
@@ -33,7 +33,7 @@ export const TaskProvider: FC = ({ children }) => {
         localStorage.setItem('taskHistory', JSON.stringify(updatedTaskHistory));
     };
 
-    const saveTaskHistory = (taskId, newHistory) => {
+    const saveTaskHistory = (taskId: string, newHistory: TaskHistory) => {
         setTaskHistory({ ...taskHistory, [taskId]: [...(taskHistory[taskId] || []), newHistory] });
         localStorage.setItem('taskHistory', JSON.stringify({
             ...taskHistory,

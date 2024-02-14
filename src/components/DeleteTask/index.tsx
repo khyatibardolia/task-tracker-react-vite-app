@@ -33,14 +33,10 @@ export const DeleteTask: FC<Props> = ({open, onClose, taskId}: Props) => {
             </Box>
             <Stack spacing={2} direction="row" sx={{width: '100%'}}>
                 <CommonButton variant="outlined" bgColor='background.paper' textColor='primary.dark' sx={{width: '50%'}}
-                              onClick={onClose}>
-                    Cancel
-                </CommonButton>
+                              onClick={onClose} label='Cancel'/>
                 <CommonButton variant="contained" bgColor='error.dark' color="error" textColor='primary.contrastText'
                               onClick={handleDeleteTask}
-                              sx={{width: '50%'}}>
-                    Delete
-                </CommonButton>
+                              sx={{width: '50%'}} label='Delete'/>
             </Stack>
         </Stack>
     </CustomModal>

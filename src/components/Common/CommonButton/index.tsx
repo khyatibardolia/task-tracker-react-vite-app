@@ -2,7 +2,7 @@ import {Button, styled} from "@mui/material";
 import {FC, ReactElement} from "react";
 
 type Props = {
-    children: ReactElement,
+    label: string,
     color?: string,
     disabled?: boolean,
     variant?: string,
@@ -15,7 +15,7 @@ type Props = {
 
 }
 
-export const CommonButton: FC = ({children, color, disabled, variant, size, sx, startIcon, onClick, bgColor, textColor}: Props) => {
+export const CommonButton: FC = ({label, color, disabled, variant, size, sx, startIcon, onClick, bgColor, textColor}: Props) => {
     const CustomButton = styled(Button)(({ theme }) => ({
         backgroundColor: !bgColor ? theme.palette.primary.dark : theme.palette[bgColor],
         color: !textColor ? theme.palette.primary.contrastText : theme.palette[textColor],
@@ -36,6 +36,6 @@ export const CommonButton: FC = ({children, color, disabled, variant, size, sx, 
         startIcon={startIcon}
         onClick={onClick}
     >
-        {children}
+        {label}
     </CustomButton>
 }
