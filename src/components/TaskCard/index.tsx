@@ -69,7 +69,7 @@ export const TaskCard: FC<Props> = ({task}: Props) => {
                     color: 'grey.500',
                     fontSize: '12px',
                     display: 'flex',
-                    justifyContent: 'center',
+                    justifyContent: 'flex-start',
                     alignItems: 'center'
                 }}>
                     <AccessTimeIcon sx={{fontSize: 16, marginRight: '4px'}}/>
