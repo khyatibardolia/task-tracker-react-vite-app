@@ -1,4 +1,15 @@
-export const statusMapping = {
+export interface StatusProperties {
+    bgColor: string;
+    color: string;
+    validTransitions: string[];
+}
+
+export interface StatusMapping {
+    [key: string]: StatusProperties;
+}
+
+
+export const statusMapping: StatusMapping = {
     Todo: {
         bgColor: 'rgba(51, 204, 170, 0.20)',
         color: '#008060',

@@ -1,8 +1,8 @@
 import {FC} from 'react';
-import SvgIcon from '@mui/material/SvgIcon';
+import SvgIcon, {SvgIconProps} from '@mui/material/SvgIcon';
 
-const EmptyTasksIcon: FC = (props) => (
-    <SvgIcon {...props}>
+const EmptyTasksIcon: FC<SvgIconProps> = (props: SvgIconProps) => (
+    <SvgIcon {...props} sx={{width: '100px', height: '74px'}}>
         <svg xmlns="http://www.w3.org/2000/svg" width="113" height="79" viewBox="0 0 113 79" fill="none">
             <path
                 d="M87.9787 0H24.1489C21.2112 0 18.8297 2.38146 18.8297 5.31915V69.149C18.8297 72.0866 21.2112 74.4681 24.1489 74.4681H87.9787C90.9164 74.4681 93.2978 72.0866 93.2978 69.149V5.31915C93.2978 2.38146 90.9164 0 87.9787 0Z"

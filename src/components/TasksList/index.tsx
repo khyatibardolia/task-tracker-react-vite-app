@@ -1,4 +1,4 @@
-import {FC, useContext, useEffect} from "react";
+import {FC, useContext} from "react";
 import {Box, styled, Typography} from "@mui/material";
 import EmptyTasksIcon from "../SvgIcon/EmptyTasksIcon";
 import {TaskCard} from "../TaskCard";
@@ -46,7 +46,7 @@ export const TasksList: FC = () => {
                         alignItems: 'center',
                         flexDirection: 'column',
                     }}>
-                    <EmptyTasksIcon sx={{width: '100px', height: '74px'}}/>
+                    <EmptyTasksIcon />
                     <EmptyText variant={'subtitle2'}>
                         You have nothing to do.<br/>
                         Go get some sleep!</EmptyText>

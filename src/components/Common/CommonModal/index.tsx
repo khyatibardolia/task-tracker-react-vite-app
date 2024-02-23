@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import {FC, ReactNode} from 'react';
 import { Modal, Box } from '@mui/material';
 
 type Props = {
@@ -6,6 +6,7 @@ type Props = {
     onClose: () => void;
     customWidth?: string;
     customHeight?: string;
+    children: ReactNode;
 
 };
 

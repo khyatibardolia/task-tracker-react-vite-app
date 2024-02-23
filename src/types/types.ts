@@ -6,7 +6,7 @@ export interface TasksData {
     description: string,
 }
 
-interface HistoryData {
+export interface HistoryData {
     id: string;
     statusChangeText: string;
     updatedDateAndTime: string;
@@ -16,10 +16,9 @@ export interface TaskHistory {
 }
 
 export interface TaskContextType {
-    addEditTask: (newTask: TasksData) => void;
+    addEditTask: (newTask: TasksData[]) => void;
     tasks: TasksData[];
-    setTasks: () => void;
     taskHistory: TaskHistory;
-    saveTaskHistory: (taskId: string, newHistory: any) => void;
+    saveTaskHistory: (taskId: string, newHistory: HistoryData) => void;
     deleteTask: (taskId: string) => void;
 }

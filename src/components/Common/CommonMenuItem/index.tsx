@@ -1,18 +1,16 @@
 import {Box, MenuItem} from "@mui/material";
-import {FC, ReactElement} from "react";
+import {FC, ReactElement, ReactNode} from "react";
 
 type Props = {
     onClose: () => void,
-    label: string,
+    label: string | ReactNode,
     icon: ReactElement,
     color: string,
-    onClick: () => void
 }
 
-export const CustomMenuItem: FC = ({onClose, label, icon, color, onClick}: Props) => (
+export const CustomMenuItem: FC<Props> = ({onClose, label, icon, color}: Props) => (
     <MenuItem onClick={() => {
         onClose();
-        onClick && onClick();
     }} sx={{padding: '10px'}}>
         {icon && <Box sx={{color, display: 'flex'}}>{icon}</Box>}
         {label}

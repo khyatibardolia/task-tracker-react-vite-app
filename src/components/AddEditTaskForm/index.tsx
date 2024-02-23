@@ -7,7 +7,7 @@ import AddIcon from '@mui/icons-material/Add';
 import {CommonButton} from "../Common/CommonButton";
 import {TaskContext} from "../../context/TaskContext";
 import {format} from 'date-fns';
-import {TasksData} from "../../types/types";
+import {HistoryData, TasksData} from "../../types/types";
 import {generateUniqueId} from "../../utils/generateUniqueId";
 import {CommonDropdown} from "../Common/CommonDropdown";
 import {statusMapping} from "../../utils/taskStatusMapping";
@@ -87,7 +87,7 @@ export const AddEditTaskForm: FC<Props> = ({isEdit = false, existingTask}: Props
         };
 
         const storedTasks = localStorage.getItem('tasks');
-        const existingTasks = storedTasks ? JSON.parse(storedTasks) : [];
+        const existingTasks: TasksData[] = storedTasks ? JSON.parse(storedTasks) : [];
 
         existingTasks.push(newTask);
 
@@ -123,7 +123,7 @@ export const AddEditTaskForm: FC<Props> = ({isEdit = false, existingTask}: Props
     const getTaskHistoryLog = (existingTask: TasksData, updatedTask: TasksData) => {
         // Updating history only if status changes
         if (existingTask.status !== updatedTask.status) {
-            const historyLog = {
+            const historyLog: HistoryData = {
                 id: updatedTask.id,
                 statusChangeText: `The task was marked as "${updatedTask.status}"`,
                 updatedDateAndTime: `${format(new Date(), "MMM d, yyyy - h:mm a")}`
@@ -196,14 +196,15 @@ export const AddEditTaskForm: FC<Props> = ({isEdit = false, existingTask}: Props
                                       onClick={handleAddTask}
                                       label="Add"
             />}
-            {isEdit && Object.keys(existingTask).length &&
-                <CommonDropdown buttonText={existingTask?.status}
-                                options={statusMapping[existingTask?.status]?.validTransitions}
+            {isEdit && existingTask && Object.keys(existingTask).length &&
+                <CommonDropdown buttonText={existingTask?.status || ''}
+                                options={existingTask?.status ? statusMapping[existingTask?.status]?.validTransitions : []}
                                 onChange={handleStatusChange}
                 />}
 
             {isEdit && <Stack spacing={2} direction="row">
-                <CommonButton variant="outlined" startIcon={<CheckIcon/>} sx={{width: '50%'}} onClick={saveChanges} label="Save Changes"/>
+                <CommonButton variant="outlined" startIcon={<CheckIcon/>} sx={{width: '50%'}} onClick={saveChanges}
+                              label="Save Changes"/>
                 <CommonButton variant="outlined" bgColor='background.paper' textColor='primary.dark'
                               onClick={cancelChanges}
                               sx={{width: '50%'}}

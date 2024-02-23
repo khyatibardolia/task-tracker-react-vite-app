@@ -10,12 +10,10 @@ import TaskStatus from "../TaskStatus";
 import {useNavigate} from "react-router-dom";
 import {TaskHistory} from "../TaskHistory";
 import {DeleteTask} from "../DeleteTask";
+import {TasksData} from "../../types/types";
 
 type Props = {
-    title: string,
-    description,
-    createdDateAndTime: string,
-    status: string
+    task: TasksData
 }
 
 const iconStyles = {sx: {color: 'grey.400', paddingRight: 1}};
@@ -38,7 +36,7 @@ const menuItems = [
     },
 ];
 
-export const TaskCard: FC = ({task}: Props) => {
+export const TaskCard: FC<Props> = ({task}: Props) => {
     const navigate = useNavigate();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [isTaskHistoryModalOpen, setIsTaskHistoryModalOpen] = useState(false);
@@ -48,7 +46,7 @@ export const TaskCard: FC = ({task}: Props) => {
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
-    const handleClose = (label) => {
+    const handleClose = (label: number) => {
         switch (label) {
             case 0:
                 setIsTaskHistoryModalOpen(true)
