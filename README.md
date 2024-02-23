@@ -6,12 +6,12 @@ The Task Management App is a simple web application designed to help users manag
 ![img.png](img.png)
 
 ## Features
-- Add Task: Users can add new tasks to the system by providing a title, description, and status.
-- Edit Task: Existing tasks can be edited to update their title, description, and status.
-- Delete Task: Users have the option to delete tasks they no longer need.
-- Task Status Tracking: The app keeps a history of status changes for each task, allowing users to see when and how a task's status was modified.
+- Add Task: `Users can add new tasks to the system by providing a title, description, and status.`
+- Edit Task: `Existing tasks can be edited to update their title, description, and status.`
+- Delete Task: `Users have the option to delete tasks they no longer need.`
+- Task Status Tracking: `The app keeps a history of status changes for each task, allowing users to see when and how a task's status was modified.`
 ![img_1.png](img_1.png)
-- Responsive Design: The app is designed to work seamlessly on desktop and mobile devices, providing a consistent user experience across different screen sizes.
+- Responsive Design: `The app is designed to work seamlessly on desktop and mobile devices, providing a consistent user experience across different screen sizes.`
 
 ## Technologies Used
 - Frontend: `React.js, Material-UI`
