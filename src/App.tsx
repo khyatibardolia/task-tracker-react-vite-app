@@ -1,6 +1,6 @@
 import {Container, ThemeProvider} from '@mui/material'
 import {theme} from './theme'
-import {AppRoutes} from "./routes";
+import {AppRoutes} from "@routes/index";
 
 export default function App() {
     return (

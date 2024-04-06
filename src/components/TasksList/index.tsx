@@ -1,8 +1,8 @@
 import {FC, useContext} from "react";
 import {Box, styled, Typography} from "@mui/material";
-import EmptyTasksIcon from "../SvgIcon/EmptyTasksIcon";
-import {TaskCard} from "../TaskCard";
-import {TaskContext} from "../../context/TaskContext";
+import emptyTasksIcon from "@assets/icons/EmptyTasksIcon.svg";
+import {TaskCard} from "@components/TaskCard";
+import {TaskContext} from "@context/TaskContext";
 
 const EmptyText = styled(Typography)(({theme}) => ({
     fontSize: '14px',
@@ -46,7 +46,7 @@ export const TasksList: FC = () => {
                         alignItems: 'center',
                         flexDirection: 'column',
                     }}>
-                    <EmptyTasksIcon />
+                    <img src={emptyTasksIcon} alt="Empty Tasks Icon" />
                     <EmptyText variant={'subtitle2'}>
                         You have nothing to do.<br/>
                         Go get some sleep!</EmptyText>

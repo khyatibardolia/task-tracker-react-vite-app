@@ -1,7 +1,7 @@
 import {FC} from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import {Home} from "../pages/AddTaskPage";
-import {EditTaskPage} from "../pages/EditTaskPage";
+import {Home} from "@pages/AddTaskPage";
+import {EditTaskPage} from "@pages/EditTaskPage";
 
 export const AppRoutes: FC = () => {
     return (

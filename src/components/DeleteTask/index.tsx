@@ -1,9 +1,10 @@
 import {FC, useContext} from "react";
 import {CustomModal} from "../Common/CommonModal";
 import {Box, Stack, Typography} from "@mui/material";
-import DeleteIcon from "../SvgIcon/DeleteIcon";
-import {CommonButton} from "../Common/CommonButton";
-import {TaskContext} from "../../context/TaskContext";
+import deleteIcon from '@assets/icons/DeleteIcon.svg';
+
+import {CommonButton} from "@components/Common/CommonButton";
+import {TaskContext} from "@context/TaskContext";
 
 type Props = {
     open: boolean;
@@ -22,7 +23,7 @@ export const DeleteTask: FC<Props> = ({open, onClose, taskId}: Props) => {
     return <CustomModal open={open} onClose={onClose} customWidth='40vw' customHeight='30vh'>
         <Stack spacing={6}
                sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexDirection: 'column'}}>
-            <DeleteIcon />
+            <img src={deleteIcon} alt="Delete Icon" />
             <Box sx={{textAlign: 'center'}}>
                 <Typography variant="h5" id="modal-title">
                     <b>Delete Task?</b>

@@ -1,8 +1,8 @@
 import {FC, useContext, useEffect, useState} from "react";
 import {AddEditTaskForm} from "../AddEditTaskForm";
 import {useParams} from "react-router-dom";
-import {TaskContext} from "../../context/TaskContext";
-import {TasksData} from "../../types/types";
+import {TaskContext} from "@context/TaskContext";
+import {TasksData} from "@types/types";
 
 export const EditTask: FC = () => {
     const { tasks } = useContext(TaskContext);

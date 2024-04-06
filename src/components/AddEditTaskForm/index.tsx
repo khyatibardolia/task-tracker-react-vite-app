@@ -4,13 +4,13 @@ import InsertDriveFileOutlinedIcon from '@mui/icons-material/InsertDriveFileOutl
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import CheckIcon from '@mui/icons-material/Check';
 import AddIcon from '@mui/icons-material/Add';
-import {CommonButton} from "../Common/CommonButton";
-import {TaskContext} from "../../context/TaskContext";
+import {CommonButton} from "@components/Common/CommonButton";
+import {TaskContext} from "@context/TaskContext";
 import {format} from 'date-fns';
-import {HistoryData, TasksData} from "../../types/types";
-import {generateUniqueId} from "../../utils/generateUniqueId";
-import {CommonDropdown} from "../Common/CommonDropdown";
-import {statusMapping} from "../../utils/taskStatusMapping";
+import {HistoryData, TasksData} from "@types/types";
+import {generateUniqueId} from "@utils/generateUniqueId";
+import {CommonDropdown} from "@components/Common/CommonDropdown";
+import {statusMapping} from "@utils/taskStatusMapping";
 import {useNavigate} from "react-router-dom";
 
 const CustomInput = styled(Input)(({theme}) => ({

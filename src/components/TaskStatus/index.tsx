@@ -1,6 +1,6 @@
 import Chip from '@mui/material/Chip';
 import { FC } from "react";
-import {statusMapping} from "../../utils/taskStatusMapping";
+import {statusMapping} from "@utils/taskStatusMapping";
 
 type Props = {
     status: string

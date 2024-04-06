@@ -5,12 +5,12 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import EventOutlinedIcon from '@mui/icons-material/EventOutlined';
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
-import {CustomMenuItem} from "../Common/CommonMenuItem";
-import TaskStatus from "../TaskStatus";
+import {CustomMenuItem} from "@components/Common/CommonMenuItem";
+import TaskStatus from "@components/TaskStatus";
 import {useNavigate} from "react-router-dom";
-import {TaskHistory} from "../TaskHistory";
-import {DeleteTask} from "../DeleteTask";
-import {TasksData} from "../../types/types";
+import {TaskHistory} from "@components/TaskHistory";
+import {DeleteTask} from "@components/DeleteTask";
+import {TasksData} from "@types/types";
 
 type Props = {
     task: TasksData

@@ -1,5 +1,5 @@
 import {createContext, FC, ReactNode, useEffect, useState} from 'react';
-import {HistoryData, TaskContextType, TaskHistory, TasksData} from "../../types/types";
+import {HistoryData, TaskContextType, TaskHistory, TasksData} from "@types/types";
 
 export const TaskContext = createContext<TaskContextType>({} as TaskContextType);
 

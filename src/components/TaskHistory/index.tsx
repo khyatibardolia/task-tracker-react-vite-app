@@ -1,6 +1,6 @@
 import {FC, useContext} from "react";
-import {TaskContext} from "../../context/TaskContext";
-import {CustomModal} from "../Common/CommonModal";
+import {TaskContext} from "@context/TaskContext";
+import {CustomModal} from "@components/Common/CommonModal";
 import {Box, Divider, Typography} from "@mui/material";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 
